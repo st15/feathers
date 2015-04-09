@@ -1512,7 +1512,7 @@ package feathers.controls.text
 		/**
 		 * @private
 		 */
-		protected function createTextureOnRestoreCallback(snapshot:Image):void
+		protected function createTextureOnRestoreCallback(snapshot:Image, textureX:Number, textureY:Number):void
 		{
 			var self:TextFieldTextRenderer = this;
 			var texture:Texture = snapshot.texture;
@@ -1522,7 +1522,7 @@ package feathers.controls.text
 				HELPER_MATRIX.identity();
 				HELPER_MATRIX.scale(scaleFactor, scaleFactor);
 				var bitmapData:BitmapData = self.drawTextFieldRegionToBitmapData(
-					snapshot.x, snapshot.y, texture.nativeWidth, texture.nativeHeight);
+					textureX, textureY, texture.nativeWidth, texture.nativeHeight);
 				texture.root.uploadBitmapData(bitmapData);
 				bitmapData.dispose();
 			};
@@ -1639,7 +1639,7 @@ package feathers.controls.text
 					}
 					if(newTexture)
 					{
-						this.createTextureOnRestoreCallback(snapshot);
+						this.createTextureOnRestoreCallback(snapshot, xPosition, yPosition);
 					}
 					if(snapshotIndex >= 0)
 					{
